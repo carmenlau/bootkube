@@ -58,6 +58,10 @@ function configure_network() {
 
 # Initialize a Master node
 function init_master_node() {
+    # Update hostname
+    sudo hostname $(hostname -s)
+    sudo bash -c "hostname > /etc/hostname"
+
     systemctl daemon-reload
     systemctl stop update-engine; systemctl mask update-engine
 

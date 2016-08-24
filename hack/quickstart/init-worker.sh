@@ -41,6 +41,10 @@ function extract_master_endpoint (){
 
 # Initialize a worker node
 function init_worker_node() {
+    # Update hostname
+    sudo hostname $(hostname -s)
+    sudo bash -c "hostname > /etc/hostname"
+
     extract_master_endpoint
     configure_flannel
 
