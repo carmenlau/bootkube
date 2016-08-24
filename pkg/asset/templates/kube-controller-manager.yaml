@@ -37,3 +37,4 @@ spec:
       - name: ssl-host
         hostPath:
           path: /usr/share/ca-certificates
+      dnsPolicy: Default
