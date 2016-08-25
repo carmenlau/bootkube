@@ -33,6 +33,7 @@ spec:
         - --lock-file=/var/run/lock/kubelet.lock
         - --minimum-container-ttl-duration=3m0s
         - --cloud-provider=gce
+        - --cloud-config=/etc/kubernetes/gce.conf
         - --experimental-flannel-overlay=true
         securityContext:
           privileged: true

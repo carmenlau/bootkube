@@ -52,6 +52,12 @@ function init_worker_node() {
     mkdir -p /etc/kubernetes
     cp ${KUBECONFIG} /etc/kubernetes/kubeconfig
 
+    cat <<EOF >/etc/kubernetes/gce.conf
+[global]
+node-tags = k8s-minion
+node-instance-prefix = k8s-minion
+EOF
+
     sed "s/{{apiserver}}/${MASTER_PRIV}/" /home/core/kubelet.worker > /etc/systemd/system/kubelet.service
     rm /home/core/kubelet.worker
 

@@ -89,6 +89,12 @@ function init_master_node() {
     mkdir -p /etc/kubernetes
     cp /home/core/assets/auth/kubeconfig /etc/kubernetes/
 
+    cat <<EOF >/etc/kubernetes/gce.conf
+[global]
+node-tags = k8s-minion
+node-instance-prefix = k8s-minion
+EOF
+
     # Start the kubelet
     systemctl enable kubelet; sudo systemctl start kubelet
 

@@ -42,6 +42,7 @@ spec:
         - --service-account-key-file=/etc/kubernetes/secrets/service-account.pub
         - --client-ca-file=/etc/kubernetes/secrets/ca.crt
         - --cloud-provider=gce
+        - --cloud-config=/etc/kubernetes/gce.conf
         env:
           - name: MY_POD_IP
             valueFrom:
@@ -54,6 +55,9 @@ spec:
         - mountPath: /etc/kubernetes/secrets
           name: secrets
           readOnly: true
+        - name: etc-kubernetes-gce
+          mountPath: /etc/kubernetes/gce.conf
+          readOnly: true
       volumes:
       - name: ssl-certs-host
         hostPath:
@@ -64,3 +68,6 @@ spec:
       - name: secrets
         secret:
           secretName: kube-apiserver
+      - name: etc-kubernetes-gce
+        hostPath:
+          path: /etc/kubernetes/gce.conf

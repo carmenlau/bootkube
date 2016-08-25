@@ -23,12 +23,16 @@ spec:
         - --service-account-private-key-file=/etc/kubernetes/secrets/service-account.key
         - --leader-elect=true
         - --cloud-provider=gce
+        - --cloud-config=/etc/kubernetes/gce.conf
         volumeMounts:
         - name: secrets
           mountPath: /etc/kubernetes/secrets
           readOnly: true
         - name: ssl-host
           mountPath: /etc/ssl/certs
+          readOnly: true
+        - name: etc-kubernetes-gce
+          mountPath: /etc/kubernetes/gce.conf
           readOnly: true
       volumes:
       - name: secrets
@@ -37,4 +41,7 @@ spec:
       - name: ssl-host
         hostPath:
           path: /usr/share/ca-certificates
+      - name: etc-kubernetes-gce
+        hostPath:
+          path: /etc/kubernetes/gce.conf
       dnsPolicy: Default

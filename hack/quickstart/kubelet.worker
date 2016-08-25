@@ -20,6 +20,7 @@ ExecStart=/usr/lib/coreos/kubelet-wrapper \
   --cluster_domain=cluster.local \
   --config=/etc/kubernetes/manifests \
   --cloud-provider=gce \
+  --cloud-config=/etc/kubernetes/gce.conf \
   --experimental-flannel-overlay=true
 
 Restart=always
